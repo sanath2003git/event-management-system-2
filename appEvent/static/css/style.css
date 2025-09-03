@@ -1,0 +1,92 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the body takes up at least the full viewport height */
+    background-color: #F9FCFF;
+}
+
+nav{
+    background-color: #081f56;
+}
+
+.font-style{
+    font-family: 'Roboto', sans-serif;
+}
+span{
+    color: #f9fcff;
+}
+
+.main {
+    flex: 1; /* Allows main content to grow to fill available space */
+}
+
+.slide-image{
+     border-radius: 20px;
+}
+
+
+/* carousel overlay */
+.carousel-item {
+    position: relative; /* Ensure the overlay is positioned relative to this */
+}
+
+.carousel-item::before {
+    content: ''; /* Required for pseudo-elements */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+    z-index: 1; /* Ensure the overlay is above the image */
+    border-radius: 20px;
+}
+
+.carousel-caption{
+    z-index: 2;
+}
+
+/* welcome-section */
+.welcome-section{
+    background-color: #E7F1FF;
+    border-radius: 20px;
+}
+/* latest-events-section */
+.latest-events-section{
+    background-color: #D0E3FF;
+    border-radius: 20px;
+}
+/* events-categories-section */
+.events-categories-section{
+    background-color: #7096D1;
+    border-radius: 20px;
+}
+
+.events-categories-section .btn{
+    background-color:#334EAC ;
+    color: #E7F1FF;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
+.events-categories-section .btn:hover{
+    background-color: #0b5ed7;
+    color: #E7F1FF;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bolder;
+}
+footer{
+    width: 100%;
+    background-color: #081f56;
+    color: #f9fcff;
+}
+

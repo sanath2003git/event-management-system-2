@@ -1,0 +1,20 @@
+# Python cache
+
+*.pyc
+*~
+__pycache__/
+
+# Virtual environment
+
+evEvent/
+
+# Django
+
+db.sqlite3
+/media/
+/staticfiles/
+
+# OS junk
+
+Thumbs.db
+Desktop.ini

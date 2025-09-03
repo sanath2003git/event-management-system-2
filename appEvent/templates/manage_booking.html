@@ -1,0 +1,45 @@
+{% extends "master.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Manage Bookings</h2>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>User</th>
+                <th>Event</th>
+                <th>Status</th>
+                <th>Booked At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.user.username }}</td>
+                <td>{{ booking.event.title }}</td>
+                <td>{{ booking.status }}</td>
+                <td>{{ booking.booked_at }}</td>
+                <td>
+    <form method="post" style="display:inline;">
+        {% csrf_token %}
+        <input type="hidden" name="booking_id" value="{{ booking.id }}">
+        <input type="hidden" name="action" value="confirm">
+        <button type="submit" class="btn btn-success btn-sm">Confirm</button>
+    </form>
+    <form method="post" style="display:inline;">
+        {% csrf_token %}
+        <input type="hidden" name="booking_id" value="{{ booking.id }}">
+        <input type="hidden" name="action" value="cancel">
+        <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+    </form>
+</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">No bookings found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

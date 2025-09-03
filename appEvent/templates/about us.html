@@ -1,0 +1,127 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="bg-primary text-white text-center py-5">
+    <div class="container">
+        <h1 class="display-4 fw-bold">About PLAN IT</h1>
+        <p class="lead mt-3">Transforming the way events are created, managed, and experienced</p>
+    </div>
+</section>
+
+<!-- Our Story -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-4">Our Story</h2>
+                <p class="lead text-muted">
+                    Founded in 2025, PLAN IT was born from a simple idea: event management should be accessible,
+                    powerful, and enjoyable for everyone.
+                </p>
+                <p>
+                    What started as a small team of passionate developers and event organizers has grown into a comprehensive
+                    platform serving thousands of users worldwide.
+                </p>
+                <p>
+                    Our mission is to empower event organizers with tools they need to create unforgettable
+                    experiences while making the process seamless and efficient.
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <img src="https://imgs.search.brave.com/xkkpI2TBwltu30fqLh8Ve8loT-4ykos6OAsxz20yuHI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc3F1YXJlc3Bh/Y2UtY2RuLmNvbS9j/b250ZW50L3YxLzY4/MjRhYTZjMjQ1MmU5/MTE2NjA2MmQ2ZS9l/YWViZWFiMC0zYWQy/LTQ1YTMtODY2Ny0x/YmZlMjBiYzM4YzEv/OTQ4QTE3MDUuanBn" alt="Our team" class="img-fluid rounded-4 shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center">
+            {% for item in stats %}
+            <div class="col-md-3 col-6 mb-4">
+                <h3 class="fw-bold">{{ item.stat }}</h3>
+                <p class="text-muted">{{ item.desc }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<!-- Our Mission -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 order-lg-2">
+                <h2 class="fw-bold mb-4">Our Mission</h2>
+                <p>
+                    We believe that great events bring people together, spark innovation, and create lasting memories.
+                    Our mission is to provide the most user-friendly event management platform.
+                </p>
+                <p>
+                    Whether you're a seasoned pro or a first-time planner, we make the process smooth, efficient, and enjoyable.
+                </p>
+                <div class="d-flex align-items-start mt-4">
+                    <i class="fas fa-rocket fa-2x text-primary me-3"></i>
+                    <div>
+                        <h5 class="mb-1">Innovation</h5>
+                        <p class="text-muted mb-0">Continuously improving our platform with cutting-edge features</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <img src="https://imgs.search.brave.com/-tWNbJJERWbatOzu9h-SebFbPaH_iUhoSmEhzTUBQCY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzgzL2Rm/LzFkLzgzZGYxZDUx/NmMwZmJhODAyNjFj/MTkzNTBjMmU1YTVh/LmpwZw" alt="Our mission" class="img-fluid rounded-4 shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Values -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Our Values</h2>
+            <p class="lead text-muted">The principles that guide everything we do</p>
+        </div>
+        <div class="row g-4">
+            {% for value in values %}
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm text-center p-4">
+                    <i class="{{ value.icon }} fa-2x text-primary mb-3"></i>
+                    <h5 class="fw-bold">{{ value.title }}</h5>
+                    <p class="text-muted">{{ value.desc }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Meet Our Team</h2>
+            <p class="lead text-muted">The passionate people behind PLAN IT</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm text-center p-4">
+                    <img src="https://imgs.search.brave.com/k04g0TK42UKvC02rzCKrxmXuYoZXi4X7pQu1wH2V6eo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvaGQvYm91/bnR5LWh1bnRlci1y/b3Jvbm9hLXpvcm8t/cGZwLTJqc3U1cWR0/cW90cmE4cTcuanBn" 
+                        class="rounded-circle mx-auto mb-3" 
+                        style="width: 120px; height: 120px; object-fit: cover;" 
+                        alt="Founder">
+                    <h5 class="fw-bold">Zoro</h5>
+                    <p class="text-primary mb-1">Founder</p>
+                    <p class="text-muted small">Former event organizer with 1+ years of experience</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

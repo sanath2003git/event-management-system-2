@@ -1,0 +1,49 @@
+{% extends "master.html" %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<!-- Hero Image -->
+<!-- <section>
+  <div>
+    <img class="w-100 rounded-5" src="{% static 'images/slide-img-3.jpg' %}" alt="Contact Image" style="object-fit: cover; height: 300px;">
+  </div>
+</section> -->
+
+<!-- Contact Form Section -->
+<section class="py-5">
+  <div class="container">
+    <div class="row justify-content-center align-items-center gx-5">
+      <!-- Left Image Column -->
+      <div class="col-md-6 mb-4 mb-md-0 pe-md-4">
+        <img src="https://imgs.search.brave.com/NSey8x9tBQ0ngZLxCEhF1xODqGzxCvmIgE74I65MkW0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc3F1YXJlc3Bh/Y2UtY2RuLmNvbS9j/b250ZW50L3YxLzY1/ZjRkOWFhZDRjNWQ2/NjAzOTgxMzAzYy8y/MGVhZWFhOS03YzU5/LTQwZGMtOTU2Zi1l/MjNkODgwODNhM2Iv/QUlPQzI0XzQ1Lmpw/Zw" alt="Contact Image" class="img-fluid rounded-5 shadow" style="object-fit: cover; height: 100%; width: 100%;">
+      </div>
+
+      <!-- Right Form Column -->
+      <div class="col-md-6 ps-md-4">
+        <h2 class="mb-4 fw-bold">Contact Us</h2>
+        <form method="post" novalidate>
+          {% csrf_token %}
+          {% for field in form %}
+            <div class="mb-3">
+              <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+              {{ field }}
+              {% if field.help_text %}
+                <div class="form-text">{{ field.help_text }}</div>
+              {% endif %}
+              {% for error in field.errors %}
+                <div class="text-danger small">{{ error }}</div>
+              {% endfor %}
+            </div>
+          {% endfor %}
+          <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
