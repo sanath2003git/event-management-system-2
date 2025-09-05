@@ -11,6 +11,8 @@ class User(AbstractUser):
 
     # Role field with default
     role = models.CharField(max_length=50, choices=Role.choices, default=Role.ADMIN)
+    # ✅ New profile picture field
+    profile_pic = models.ImageField(upload_to="profile_pics/", blank=True, null=True,default="profile_pics/profile_pic_default.jpg")
 
     def save(self, *args, **kwargs):
         # Only assign base_role if role is not already set

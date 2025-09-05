@@ -78,15 +78,8 @@ def attendee_dashboard_view(request):
 @login_required
 def user_profile(request):
     user = request.user
-    bookings = None
-    events = None
-
-    if user.role == "ATTENDEE":
-        bookings = Booking.objects.filter(user=user)
-    elif user.role == "ORGANIZER":
-        events = Event.objects.filter(created_by=user)  # Assuming you track creator
-
-    return render(request, "profile.html", {
-        "bookings": bookings,
-        "events": events,
-    })
+    if request.method == "POST" and request.FILES.get("profile_pic"):
+        user.profile_pic = request.FILES["profile_pic"]
+        user.save()
+        return redirect("profile")
+    return render(request, "profile.html")
