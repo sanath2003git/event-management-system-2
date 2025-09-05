@@ -25,15 +25,20 @@ class UserSignupForm(forms.ModelForm):
             else:
                 field.widget.attrs.update({'class': 'form-control'})
 
-    def clean(self):
-        cleaned_data = super().clean()
-        password1 = cleaned_data.get("password1")
-        password2 = cleaned_data.get("password2")
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
 
         if password1 and password2 and password1 != password2:
             raise ValidationError("Passwords do not match")
 
-        return cleaned_data
+        return password2
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("This email is already registered.")
+        return email
+
 
     def save(self, commit=True):
         user = super().save(commit=False)
