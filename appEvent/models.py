@@ -1,5 +1,6 @@
 from django.db import models
 from appUser.models import User
+from django.conf import settings
 # Create your models here.
 
 class Event(models.Model):
@@ -18,7 +19,7 @@ class Event(models.Model):
     end_at = models.TimeField(default='08:00:00')
     location = models.CharField(max_length=255)
     image = models.ImageField(upload_to='event_images/', default='event_images/default_event_image.jpg')
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events', default=1)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='events', default=1)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default="Music")
 
     def __str__(self):

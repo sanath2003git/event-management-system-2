@@ -28,7 +28,18 @@
         <div class="col-md-4 mb-2">
           <strong>Location:</strong> {{ event.location }}
         </div>
+        <!-- Event By -->
+            <div class="mb-2">
+              <strong class="text-muted">
+              Created by: <span class="fw-semibold">{{ event.created_by.username }}</span>
+              </strong>
+            </div>
+        <!-- Event Category -->
+        <small class="fw-semibold text-muted mb-2">
+          <span class="btn btn-primary btn-sm rounded-5">{{ event.category }}</span>
+        </small>
       </div>
+
 
       <!-- Event Description -->
       <div class="mb-4">

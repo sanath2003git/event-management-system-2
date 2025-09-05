@@ -69,7 +69,16 @@
             <h5 class="card-title fw-bold">{{ event.title }}</h5>
             <small class="fw-semibold text-muted mb-2">{{ event.location }}</small>
             <p class="card-text text-muted flex-grow-1">{{ event.description|truncatewords:10 }}</p>
+            <!-- Event By -->
+            <small class="fw-semibold mb-2">
+              <span>{{event.created_by}}</span>
+            </small>
+            <!-- Event Category -->
+            <small class="fw-semibold text-muted mb-2">
+              <span class="btn btn-primary btn-sm rounded-5">{{ event.category }}</span>
+            </small>
           </div>
+        
           <div class="card-footer bg-white border-0 pt-0">
             <div class="d-flex align-items-center justify-content-between">
               <h6 class="text-muted mb-0">{{ event.date|date:"M d, Y" }}</h6>

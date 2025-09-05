@@ -86,7 +86,7 @@ def event_create(request):
         form = EventForm(request.POST, request.FILES)
         if form.is_valid():
             event = form.save(commit=False)
-            event.created_by = request.user  # Set the creator
+            event.created_by = request.user  # automatically assigns the logged-in user
             event.save()
             return redirect('events')
     else:

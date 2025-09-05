@@ -67,7 +67,7 @@
 
 
         <!-- Auth Buttons -->
-        <ul class="list-unstyled d-flex gap-2 me-4 mb-0">
+        <ul class="list-unstyled d-flex gap-2 me-4 mb-0 mt-3 mt-md-0">
           {% if user.is_authenticated %}
             <li><a class="btn btn-outline-danger" href="{% url 'logout' %}">Logout</a></li>
             <li><a class="btn btn-outline-info" href="{% url 'profile' %}">Profile</a></li>

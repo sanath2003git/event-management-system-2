@@ -43,7 +43,8 @@ class TimeInput(forms.TimeInput):
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = '__all__'
+        # Only include fields the organizer should fill
+        fields = ['title', 'description', 'date', 'start_at', 'end_at', 'location', 'image']
         widgets = {
             'date': DateInput(),
             'start_at': TimeInput(),
@@ -70,6 +71,7 @@ class EventForm(forms.ModelForm):
                 existing_classes = field.widget.attrs.get('class', '')
                 classes = f'{existing_classes} form-control'.strip()
                 field.widget.attrs.update({'class': classes})
+
 
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
