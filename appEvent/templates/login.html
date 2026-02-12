@@ -1,63 +1,67 @@
 {% extends "master.html" %}
 
 {% block title %}
-  Login
+Login | PLAN IT
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
     <div class="row justify-content-center">
-        <div class="col-md-5">
+        <div class="col-md-5 col-lg-4">
 
-            <div class="card shadow-lg rounded-3">
-                <div class="card-body p-4">
-                    <h2 class="card-title text-center mb-4 text-primary fw-bold">Login</h2>
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden animate slideIn">
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h3 class="fw-bold mb-0">Welcome Back</h3>
+                    <p class="mb-0 text-white-50 small">Please login to your account</p>
+                </div>
+                <div class="card-body p-4 p-md-5">
 
                     {% if messages %}
-                        {% for message in messages %}
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                {{ message }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        {% endfor %}
+                    {% for message in messages %}
+                    <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+                        <i class="fa-solid fa-circle-exclamation me-2"></i> {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
                     {% endif %}
 
                     <form method="post" novalidate>
                         {% csrf_token %}
-                        
-                        <div class="mb-3">
-                            <label for="id_username" class="form-label fw-semibold">Username</label>
+
+                        <div class="form-floating mb-3">
                             {{ form.username }}
+                            <label for="id_username"><i class="fa-solid fa-user me-2 text-muted"></i>Username</label>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="id_password" class="form-label fw-semibold">Password</label>
+                        <div class="form-floating mb-4">
                             {{ form.password }}
+                            <label for="id_password"><i class="fa-solid fa-lock me-2 text-muted"></i>Password</label>
                         </div>
 
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-sm">
-                                Login
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-sm py-3 fw-bold">
+                                Login <i class="fa-solid fa-arrow-right ms-2"></i>
                             </button>
                         </div>
                     </form>
 
-                    <div class="text-center mt-4">
-                        <a href="{% url 'forgotpassword' %}" class="text-decoration-none">Forgot your password?</a>
-                        <p class="mt-2">
-                            Don’t have an account? 
-                            <a href="{% url 'signup' %}" class="fw-semibold text-decoration-none">Register here</a>
+                    <div class="text-center">
+                        <a href="{% url 'forgotpassword' %}" class="text-decoration-none small text-muted">Forgot your
+                            password?</a>
+                        <hr class="my-4 opacity-25">
+                        <p class="mb-0 text-muted">
+                            New to Plan It?
+                            <a href="{% url 'signup' %}" class="fw-bold text-primary text-decoration-none">Create
+                                Account</a>
                         </p>
                     </div>
-
-                    <hr>
-
-                    <div class="text-center mt-3">
-                        <a href="/admin/" class="btn btn-outline-dark btn-sm rounded-pill">
-                            Admin Login
-                        </a>
-                    </div>
                 </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="/admin/" class="text-secondary small text-decoration-none opacity-50 hover-scale">
+                    <i class="fa-solid fa-shield-halved me-1"></i> Admin Access
+                </a>
             </div>
 
         </div>

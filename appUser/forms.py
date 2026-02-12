@@ -8,14 +8,9 @@ class UserSignupForm(forms.ModelForm):
     password1 = forms.CharField(widget=forms.PasswordInput, label="Password")
     password2 = forms.CharField(widget=forms.PasswordInput, label="Confirm Password")
 
-    role = forms.ChoiceField(choices=[
-        (User.Role.ATTENDEE, 'Attendee'),
-        (User.Role.ORGANIZER, 'Organizer'),
-    ])
-
     class Meta:
         model = User
-        fields = ['username', 'email', 'role', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2']
 
     def __init__(self, *args, **kwargs):
         super(UserSignupForm, self).__init__(*args, **kwargs)
@@ -43,7 +38,7 @@ class UserSignupForm(forms.ModelForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data['password1'])  # Hash the password
-        user.role = self.cleaned_data['role']
+        user.role = User.Role.ATTENDEE
         if commit:
             user.save()
         return user

@@ -1,0 +1,111 @@
+{% extends "master.html" %}
+{% block title %}Home{% endblock %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<header class="hero-section position-relative">
+  <div class="hero-overlay"></div>
+
+  <div class="container hero-content text-center text-white">
+    <h5 class="hero-subtitle">The Best Events of the Year</h5>
+    <h1 class="hero-title fw-bold">PLAN YOUR EVENT<br>THIS SEASON</h1>
+
+    <a href="{% url 'signup' %}" class="btn btn-light px-4 py-2 mt-3 fw-semibold">
+      Get Started
+    </a>
+  </div>
+</header>
+
+<!-- Welcome Section -->
+<section class="welcome-section py-5 text-center mb-5">
+  <div class="container">
+    <h2 class="fw-bold text-dark">
+      Welcome to <span class="text-primary">PLAN IT</span>
+    </h2>
+    <p class="text-muted">Discover and book exciting events near you.</p>
+  </div>
+</section>
+
+<!-- Latest Events -->
+<section class="py-5 bg-white mb-5">
+  <div class="container">
+
+    <h4 class="mb-4 fw-bold">Latest Events</h4>
+
+    <div class="row">
+      {% for event in latest_events %}
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="card h-100 event-card shadow-sm border-0">
+
+          <img src="{{ event.image.url }}" class="card-img-top" alt="Event Image">
+
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-bold">{{ event.title }}</h5>
+            <small class="text-muted">{{ event.location }}</small>
+
+            <p class="text-muted mt-2 flex-grow-1">{{ event.description|truncatewords:10 }}</p>
+
+            <small class="fw-semibold">
+              Organized by: {{ event.created_by }}
+            </small>
+
+            <span class="badge rounded-pill bg-primary mt-2">{{ event.category }}</span>
+          </div>
+
+          <div class="card-footer bg-white border-0">
+            <div class="d-flex justify-content-between">
+              <h6 class="text-muted">{{ event.date|date:"M d, Y" }}</h6>
+
+              <div class="d-flex gap-2">
+                <a href="{% url 'event_detail' event.id %}" class="btn btn-outline-primary btn-sm">View</a>
+
+                {% if user.is_authenticated and user.role == "ATTENDEE" %}
+                <form method="post" action="{% url 'book_event' event.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-success btn-sm">Book</button>
+                </form>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12">
+        <p class="text-center text-muted fs-5">No events available.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Event Categories -->
+<section class="py-5 bg-light mb-5">
+  <div class="container">
+    <h4 class="mb-4 fw-bold">Event Categories</h4>
+    <div class="row justify-content-center g-3">
+      {% for category in categories %}
+      <div class="col-6 col-sm-4 col-md-2">
+        <button class="btn btn-outline-primary rounded-pill w-100">
+          {{ category }}
+        </button>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section text-white text-center py-5">
+  <div class="container">
+    <h2 class="mb-3 fw-bold">Ready to Host or Attend an Event?</h2>
+    <a href="{% url 'signup' %}" class="btn btn-light btn-lg px-4">
+      Join Now
+    </a>
+  </div>
+</section>
+
+{% endblock %}

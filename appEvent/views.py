@@ -101,18 +101,18 @@ def manage_events(request):
         messages.warning(request, "No events available.")
     return render(request, 'manage_events.html', {'events': events})
 
-
 @login_required
 def edit_event(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     if request.method == "POST":
-        form = EventForm(request.POST, instance=event)
+        form = EventForm(request.POST,  request.FILES, instance=event)
         if form.is_valid():
             form.save()
             return redirect("manage_events")
     else:
         form = EventForm(instance=event)
-    return render(request, "edit_event.html", {"form": form})
+    return render(request, "edit_event.html", {"form": form, "event": event})
+
 
 
 @login_required
@@ -182,3 +182,11 @@ def contact_us(request):
     else:
         form = ContactForm()
     return render(request, 'contact.html', {'form': form})
+
+def base(request):
+    latest_events = Event.objects.order_by('-id')[:4]
+    categories = ["Music", "Art", "Sports", "Workshops", "Food", "Family"]
+    return render(request, 'base.html', {
+        'latest_events': latest_events,
+        'categories': categories,
+    })

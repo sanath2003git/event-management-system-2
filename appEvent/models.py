@@ -21,6 +21,7 @@ class Event(models.Model):
     image = models.ImageField(upload_to='event_images/', default='event_images/default_event_image.jpg')
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='events', default=1)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default="Music")
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.title} ({self.category})"

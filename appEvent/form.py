@@ -44,7 +44,7 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         # Only include fields the organizer should fill
-        fields = ['title', 'description', 'date', 'start_at', 'end_at', 'location', 'image']
+        fields = ['title', 'description', 'date', 'start_at', 'end_at', 'location', 'image','category']
         widgets = {
             'date': DateInput(),
             'start_at': TimeInput(),
@@ -58,6 +58,7 @@ class EventForm(forms.ModelForm):
             'end_at': 'Ending time',
             'location': 'Location',
             'image': 'Image',
+            'category': 'Category',
         }
 
     def __init__(self, *args, **kwargs):

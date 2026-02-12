@@ -61,8 +61,10 @@ def logout_view(request):
 @login_required
 def organizer_dashboard_view(request):
     latest_events=Event.objects.order_by('-id')[:4]
+    categories = ["Music", "Art", "Sports", "Workshops", "Food", "Family"]
     context={
-        'latest_events':latest_events
+        'latest_events':latest_events,
+        'categories': categories
     }
     return render (request,'organizer_dashboard.html',context)
 
@@ -70,8 +72,10 @@ def organizer_dashboard_view(request):
 @login_required
 def attendee_dashboard_view(request):
     latest_events=Event.objects.order_by('-id')[:4]
+    categories = ["Music", "Art", "Sports", "Workshops", "Food", "Family"]
     context={
-        'latest_events':latest_events
+        'latest_events':latest_events,
+        'categories': categories
     }
     return render(request, 'attendee_dashboard.html',context)
 

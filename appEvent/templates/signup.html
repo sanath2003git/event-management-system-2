@@ -1,69 +1,78 @@
 {% extends "master.html" %}
 {% block title %}
-   Signup
+Signup | PLAN IT
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8 col-lg-5">
 
-            <div class="card shadow-lg rounded-3">
-                <div class="card-body p-4">
-                    <h2 class="card-title text-center mb-4 text-primary fw-bold">Create an Account</h2>
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden animate slideIn">
+                <div class="card-header bg-success text-white text-center py-4">
+                    <h3 class="fw-bold mb-0">Create Account</h3>
+                    <p class="mb-0 text-white-50 small">Join the community today</p>
+                </div>
 
+                <div class="card-body p-4 p-md-5">
                     <form method="post" novalidate>
                         {% csrf_token %}
 
-                        <div class="mb-3">
-                            <label for="id_username" class="form-label fw-semibold">Username</label>
+                        <div class="form-floating mb-3">
                             {{ form.username }}
+                            <label for="id_username"><i class="fa-solid fa-user me-2 text-muted"></i>Username</label>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="id_email" class="form-label fw-semibold">Email</label>
+                        <div class="form-floating mb-3">
                             {{ form.email }}
+                            <label for="id_email"><i class="fa-solid fa-envelope me-2 text-muted"></i>Email</label>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="id_password1" class="form-label fw-semibold">Password</label>
-                            {{ form.password1 }}
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <div class="form-floating">
+                                    {{ form.password1 }}
+                                    <label for="id_password1"><i
+                                            class="fa-solid fa-lock me-2 text-muted"></i>Password</label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating">
+                                    {{ form.password2 }}
+                                    <label for="id_password2"><i
+                                            class="fa-solid fa-lock me-2 text-muted"></i>Confirm</label>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="id_password2" class="form-label fw-semibold">Confirm Password</label>
-                            {{ form.password2 }}
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="id_role" class="form-label fw-semibold">Role</label>
-                            {{ form.role }}
+                        <div class="form-floating mb-4">
+                            <input class="form-control" type="text" name="id_role" id="id_role" value="Attendee"
+                                readonly style="background-color: #f8f9fa;">
+                            <label for="id_role" class="text-muted">Role</label>
                         </div>
 
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-success btn-lg rounded-pill shadow-sm">
-                                Register
+                            <button type="submit" class="btn btn-success btn-lg rounded-pill shadow-sm py-3 fw-bold">
+                                Register <i class="fa-solid fa-user-plus ms-2"></i>
                             </button>
                         </div>
                     </form>
 
                     <div class="text-center mt-4">
-                        <p>
-                            Already have an account? 
-                            <a href="{% url 'login' %}" class="fw-semibold text-decoration-none">
+                        <p class="mb-0 text-muted">
+                            Already have an account?
+                            <a href="{% url 'login' %}" class="fw-bold text-success text-decoration-none">
                                 Login here
                             </a>
                         </p>
                     </div>
 
-                    <hr>
-
-                    <div class="text-center mt-3">
-                        <a href="/admin/" class="btn btn-outline-dark btn-sm rounded-pill">
-                            Admin Login
-                        </a>
-                    </div>
                 </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="/admin/" class="text-secondary small text-decoration-none opacity-50 hover-scale">
+                    <i class="fa-solid fa-shield-halved me-1"></i> Admin Access
+                </a>
             </div>
 
         </div>
