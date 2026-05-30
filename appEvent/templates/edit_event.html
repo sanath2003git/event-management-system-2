@@ -1,113 +1,243 @@
 {% extends "master.html" %}
 
 {% block title %}
-  Edit Event - {{ event.title }}
+Edit Event - {{ event.title }}
 {% endblock %}
 
 {% load static %}
 
 {% block content %}
+
 <div class="container my-5">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Edit Event: {{ event.title }}</h2>
-    <a href="{% url 'manage_events' %}" class="btn btn-secondary">Back to Manage Events</a>
-  </div>
 
-  <!-- Form Container -->
-  <div class="row justify-content-center">
-    <div class="col-md-8 col-lg-6">
-      <div class="card shadow">
-        <div class="card-header bg-primary text-white">
-          <h5 class="mb-0">Update Event Details</h5>
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+
+        <div>
+
+            <h2 class="fw-bold mb-1">
+                Edit Event
+            </h2>
+
+            <p class="text-muted mb-0">
+                Update your event information
+            </p>
+
         </div>
-        <div class="card-body p-4">
-          <form method="post" enctype="multipart/form-data" novalidate>
-            {% csrf_token %}
-            
-            <!-- Title Field -->
-            <div class="mb-3">
-              <label for="{{ form.title.id_for_label }}" class="form-label">Event Title</label>
-              {{ form.title }}
-              {% if form.title.errors %}
-                <div class="text-danger small">
-                  {% for error in form.title.errors %}
-                    {{ error }}
-                  {% endfor %}
-                </div>
-              {% endif %}
-            </div>
 
-            <!-- Date Field -->
-            <div class="mb-3">
-              <label for="{{ form.date.id_for_label }}" class="form-label">Event Date</label>
-              {{ form.date }}
-              {% if form.date.errors %}
-                <div class="text-danger small">
-                  {% for error in form.date.errors %}
-                    {{ error }}
-                  {% endfor %}
-                </div>
-              {% endif %}
-            </div>
+        <a href="{% url 'manage_events' %}"
+           class="btn btn-outline-secondary mt-3 mt-md-0">
 
-            <!-- Location Field -->
-            <div class="mb-3">
-              <label for="{{ form.location.id_for_label }}" class="form-label">Location</label>
-              {{ form.location }}
-              {% if form.location.errors %}
-                <div class="text-danger small">
-                  {% for error in form.location.errors %}
-                    {{ error }}
-                  {% endfor %}
-                </div>
-              {% endif %}
-            </div>
+            ← Back
 
-            <!-- Description Field -->
-            <div class="mb-3">
-              <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
-              {{ form.description }}
-              {% if form.description.errors %}
-                <div class="text-danger small">
-                  {% for error in form.description.errors %}
-                    {{ error }}
-                  {% endfor %}
-                </div>
-              {% endif %}
-            </div>
+        </a>
 
-            <!-- Image Field -->
-            <div class="mb-3">
-              <label for="{{ form.image.id_for_label }}" class="form-label">Event Image</label>
-              {{ form.image }}
-              {% if form.image.errors %}
-                <div class="text-danger small">
-                  {% for error in form.image.errors %}
-                    {{ error }}
-                  {% endfor %}
-                </div>
-              {% endif %}
-              
-              <!-- Current Image Preview -->
-              {% if event.image %}
-                <div class="mt-2">
-                  <small class="text-muted">Current Image:</small>
-                  <div class="mt-1">
-                    <img src="{{ event.image.url }}" alt="Current Event Image" class="img-thumbnail" style="max-width: 200px; max-height: 150px;">
-                  </div>
-                </div>
-              {% endif %}
-            </div>
-
-            <!-- Submit Button -->
-            <div class="d-flex justify-content-between">
-              <a href="{% url 'manage_events' %}" class="btn btn-secondary">Cancel</a>
-              <button type="submit" class="btn btn-primary">Update Event</button>
-            </div>
-          </form>
-        </div>
-      </div>
     </div>
-  </div>
+
+    <!-- Form Section -->
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+
+                <!-- Card Header -->
+                <div class="card-header bg-primary text-white py-3">
+
+                    <h4 class="mb-0 fw-bold">
+                        Update Event Details
+                    </h4>
+
+                </div>
+
+                <!-- Card Body -->
+                <div class="card-body p-4">
+
+                    <form method="POST"
+                          enctype="multipart/form-data"
+                          novalidate>
+
+                        {% csrf_token %}
+
+                        <!-- Title -->
+                        <div class="mb-4">
+
+                            <label for="{{ form.title.id_for_label }}"
+                                   class="form-label fw-semibold">
+
+                                Event Title
+
+                            </label>
+
+                            {{ form.title }}
+
+                            {% if form.title.errors %}
+
+                            <div class="text-danger small mt-1">
+
+                                {% for error in form.title.errors %}
+                                    {{ error }}
+                                {% endfor %}
+
+                            </div>
+
+                            {% endif %}
+
+                        </div>
+
+                        <!-- Date -->
+                        <div class="mb-4">
+
+                            <label for="{{ form.date.id_for_label }}"
+                                   class="form-label fw-semibold">
+
+                                Event Date
+
+                            </label>
+
+                            {{ form.date }}
+
+                            {% if form.date.errors %}
+
+                            <div class="text-danger small mt-1">
+
+                                {% for error in form.date.errors %}
+                                    {{ error }}
+                                {% endfor %}
+
+                            </div>
+
+                            {% endif %}
+
+                        </div>
+
+                        <!-- Location -->
+                        <div class="mb-4">
+
+                            <label for="{{ form.location.id_for_label }}"
+                                   class="form-label fw-semibold">
+
+                                Location
+
+                            </label>
+
+                            {{ form.location }}
+
+                            {% if form.location.errors %}
+
+                            <div class="text-danger small mt-1">
+
+                                {% for error in form.location.errors %}
+                                    {{ error }}
+                                {% endfor %}
+
+                            </div>
+
+                            {% endif %}
+
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-4">
+
+                            <label for="{{ form.description.id_for_label }}"
+                                   class="form-label fw-semibold">
+
+                                Description
+
+                            </label>
+
+                            {{ form.description }}
+
+                            {% if form.description.errors %}
+
+                            <div class="text-danger small mt-1">
+
+                                {% for error in form.description.errors %}
+                                    {{ error }}
+                                {% endfor %}
+
+                            </div>
+
+                            {% endif %}
+
+                        </div>
+
+                        <!-- Image Upload -->
+                        <div class="mb-4">
+
+                            <label for="{{ form.image.id_for_label }}"
+                                   class="form-label fw-semibold">
+
+                                Event Image
+
+                            </label>
+
+                            {{ form.image }}
+
+                            {% if form.image.errors %}
+
+                            <div class="text-danger small mt-1">
+
+                                {% for error in form.image.errors %}
+                                    {{ error }}
+                                {% endfor %}
+
+                            </div>
+
+                            {% endif %}
+
+                            <!-- Current Image -->
+                            {% if event.image %}
+
+                            <div class="mt-4">
+
+                                <small class="text-muted d-block mb-2">
+
+                                    Current Image
+
+                                </small>
+
+                                <img src="{{ event.image.url }}"
+                                     alt="Current Event Image"
+                                     class="img-fluid rounded-3 shadow-sm border"
+                                     style="max-width: 250px; object-fit: cover;">
+
+                            </div>
+
+                            {% endif %}
+
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-flex justify-content-between flex-wrap gap-2 mt-4">
+
+                            <a href="{% url 'manage_events' %}"
+                               class="btn btn-outline-secondary">
+
+                                Cancel
+
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+
+                                Update Event
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
+
 {% endblock %}

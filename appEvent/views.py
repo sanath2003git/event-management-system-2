@@ -96,23 +96,53 @@ def event_create(request):
 
 @login_required
 def manage_events(request):
-    events = Event.objects.all().order_by('-id')
+    events = Event.objects.filter(
+    created_by=request.user
+).order_by('-id')
     if not events:
         messages.warning(request, "No events available.")
     return render(request, 'manage_events.html', {'events': events})
 
 @login_required
 def edit_event(request, event_id):
-    event = get_object_or_404(Event, id=event_id)
-    if request.method == "POST":
-        form = EventForm(request.POST,  request.FILES, instance=event)
-        if form.is_valid():
-            form.save()
-            return redirect("manage_events")
-    else:
-        form = EventForm(instance=event)
-    return render(request, "edit_event.html", {"form": form, "event": event})
 
+    event = get_object_or_404(
+        Event,
+        id=event_id,
+        created_by=request.user
+    )
+
+    if request.method == "POST":
+
+        form = EventForm(
+            request.POST,
+            request.FILES,
+            instance=event
+        )
+
+        if form.is_valid():
+
+            form.save()
+
+            messages.success(
+                request,
+                "Event updated successfully."
+            )
+
+            return redirect("manage_events")
+
+    else:
+
+        form = EventForm(instance=event)
+
+    return render(
+        request,
+        "edit_event.html",
+        {
+            "form": form,
+            "event": event
+        }
+    )
 
 
 @login_required

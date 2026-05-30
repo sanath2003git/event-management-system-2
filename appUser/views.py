@@ -87,3 +87,20 @@ def user_profile(request):
         user.save()
         return redirect("profile")
     return render(request, "profile.html")
+
+@login_required
+def edit_profile(request):
+
+    if request.method == "POST":
+
+        request.user.username = request.POST.get('username')
+        request.user.email = request.POST.get('email')
+
+        if request.FILES.get('profile_pic'):
+            request.user.profile_pic = request.FILES.get('profile_pic')
+
+        request.user.save()
+
+        return redirect('profile')
+
+    return render(request, 'edit_profile.html')
