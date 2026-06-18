@@ -1,81 +1,254 @@
 {% extends "master.html" %}
+
 {% block title %}
 Signup | PLAN IT
 {% endblock %}
 
 {% block content %}
+
 <div class="container mt-5 mb-5">
+
     <div class="row justify-content-center">
+
         <div class="col-md-8 col-lg-5">
 
             <div class="card shadow-lg border-0 rounded-4 overflow-hidden animate slideIn">
+
+                <!-- Header -->
+
                 <div class="card-header bg-success text-white text-center py-4">
-                    <h3 class="fw-bold mb-0">Create Account</h3>
-                    <p class="mb-0 text-white-50 small">Join the community today</p>
+
+                    <h3 class="fw-bold mb-0">
+
+                        Create Account
+
+                    </h3>
+
+                    <p class="mb-0 text-white-50 small">
+
+                        Join the community today
+
+                    </p>
+
                 </div>
 
+
+                <!-- Body -->
+
                 <div class="card-body p-4 p-md-5">
+
                     <form method="post" novalidate>
+
                         {% csrf_token %}
 
-                        <div class="form-floating mb-3">
-                            {{ form.username }}
-                            <label for="id_username"><i class="fa-solid fa-user me-2 text-muted"></i>Username</label>
+
+                        <!-- Form Errors -->
+
+                        {% if form.errors %}
+
+                        <div class="alert alert-danger rounded-4">
+
+                            {% for field in form %}
+
+                                {% for error in field.errors %}
+
+                                <div class="mb-1">
+
+                                    <i class="fa-solid fa-circle-xmark me-2"></i>
+
+                                    {{ error }}
+
+                                </div>
+
+                                {% endfor %}
+
+                            {% endfor %}
+
+
+                            {% for error in form.non_field_errors %}
+
+                            <div class="mb-1">
+
+                                <i class="fa-solid fa-circle-xmark me-2"></i>
+
+                                {{ error }}
+
+                            </div>
+
+                            {% endfor %}
+
                         </div>
 
+                        {% endif %}
+
+
+                        <!-- Username -->
+
                         <div class="form-floating mb-3">
-                            {{ form.email }}
-                            <label for="id_email"><i class="fa-solid fa-envelope me-2 text-muted"></i>Email</label>
+
+                            {{ form.username }}
+
+                            <label for="id_username">
+
+                                <i class="fa-solid fa-user me-2 text-muted"></i>
+
+                                Username
+
+                            </label>
+
                         </div>
+
+
+                        <!-- Email -->
+
+                        <div class="form-floating mb-3">
+
+                            {{ form.email }}
+
+                            <label for="id_email">
+
+                                <i class="fa-solid fa-envelope me-2 text-muted"></i>
+
+                                Email
+
+                            </label>
+
+                        </div>
+
+
+                        <!-- Password -->
 
                         <div class="row g-2 mb-3">
+
                             <div class="col-6">
+
                                 <div class="form-floating">
+
                                     {{ form.password1 }}
-                                    <label for="id_password1"><i
-                                            class="fa-solid fa-lock me-2 text-muted"></i>Password</label>
+
+                                    <label for="id_password1">
+
+                                        <i class="fa-solid fa-lock me-2 text-muted"></i>
+
+                                        Password
+
+                                    </label>
+
                                 </div>
+
                             </div>
+
+
                             <div class="col-6">
+
                                 <div class="form-floating">
+
                                     {{ form.password2 }}
-                                    <label for="id_password2"><i
-                                            class="fa-solid fa-lock me-2 text-muted"></i>Confirm</label>
+
+                                    <label for="id_password2">
+
+                                        <i class="fa-solid fa-lock me-2 text-muted"></i>
+
+                                        Confirm
+
+                                    </label>
+
                                 </div>
+
                             </div>
+
                         </div>
 
-                        <div class="form-floating mb-4">
-                            <input class="form-control" type="text" name="id_role" id="id_role" value="Attendee"
-                                readonly style="background-color: #f8f9fa;">
-                            <label for="id_role" class="text-muted">Role</label>
+
+                        <!-- Role -->
+
+                        <div class="mb-4">
+
+                            <label class="form-label text-muted">
+
+                                Role
+
+                            </label>
+
+                            <input
+                                class="form-control bg-light"
+                                type="text"
+                                value="Attendee"
+                                readonly>
+
+                            <small class="text-muted">
+
+                                New accounts are created as attendees by default.
+
+                            </small>
+
                         </div>
+
+
+                        <!-- Submit -->
 
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-success btn-lg rounded-pill shadow-sm py-3 fw-bold">
-                                Register <i class="fa-solid fa-user-plus ms-2"></i>
+
+                            <button
+                                type="submit"
+                                class="btn btn-success btn-lg rounded-pill shadow-sm py-3 fw-bold">
+
+                                Register
+
+                                <i class="fa-solid fa-user-plus ms-2"></i>
+
                             </button>
+
                         </div>
+
                     </form>
 
+
+                    <!-- Footer -->
+
                     <div class="text-center mt-4">
+
                         <p class="mb-0 text-muted">
+
                             Already have an account?
-                            <a href="{% url 'login' %}" class="fw-bold text-success text-decoration-none">
+
+                            <a
+                                href="{% url 'login' %}"
+                                class="fw-bold text-success text-decoration-none">
+
                                 Login here
+
                             </a>
+
                         </p>
+
                     </div>
 
                 </div>
+
             </div>
+
+
+            <!-- Admin -->
+
             <div class="text-center mt-4">
-                <a href="/admin/" class="text-secondary small text-decoration-none opacity-50 hover-scale">
-                    <i class="fa-solid fa-shield-halved me-1"></i> Admin Access
+
+                <a
+                    href="/admin/"
+                    class="text-secondary small text-decoration-none opacity-50 hover-scale">
+
+                    <i class="fa-solid fa-shield-halved me-1"></i>
+
+                    Admin Access
+
                 </a>
+
             </div>
 
         </div>
+
     </div>
+
 </div>
+
 {% endblock %}
